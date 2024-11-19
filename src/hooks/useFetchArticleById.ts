@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Article from "../types/Article";
-import { fetchArticleById } from "../components/api";
+import { fetchArticleById } from "../api/index.ts";
+import Article from "../types/Article.ts";
 
 export default function useFetchArticleById(article_id: number) {
   const [article, setArticle] = useState<Article | null>(null);

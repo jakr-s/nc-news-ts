@@ -1,6 +1,6 @@
-import VoteButton from "../Common/VoteButton.tsx";
-import { updateArticleVotes } from "../api/index.ts";
+import { updateArticleVotes } from "../../api/index.ts";
 import useFetchArticleById from "../../hooks/useFetchArticleById.ts";
+import VoteButton from "../Common/VoteButton.tsx";
 
 interface ArticleContentProps {
   article_id: number;

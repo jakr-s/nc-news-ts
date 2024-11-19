@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { fetchTopics } from "../api";
 import { Link } from "react-router-dom";
+import { fetchTopics } from "../../api/index.ts";
+import Topic from "../../types/Topic.ts";
 
 export default function TopicsList() {
-  const [topics, setTopics] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [topics, setTopics] = useState<Topic[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchTopics()
@@ -19,8 +20,8 @@ export default function TopicsList() {
       });
   }, []);
 
-  if (loading) return null;
-  if (error) return null;
+  if (loading) return <p>Loading topics...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="topics-list">

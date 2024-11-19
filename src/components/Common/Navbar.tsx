@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import TopicsList from "../Topics/TopicsList";
+import TopicsList from "../Topics/TopicsList.tsx";
 import "./Styles/Navbar.css";
 
 export default function Navbar() {

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import ArticleContent from "./ArticleContent";
-import CommentSection from "./CommentSection";
+import ArticleContent from "./ArticleContent.tsx";
+import CommentSection from "./CommentSection.tsx";
 import "./Styles/ArticlePage.css";
 
 export default function ArticlePage() {

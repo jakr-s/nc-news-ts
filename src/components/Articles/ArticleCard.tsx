@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
+import Article from "../../types/Article.ts";
 import "./Styles/ArticleCard.css";
-import Article from "../../types/Article";
 
 interface ArticleCardProps {
   article: Article;

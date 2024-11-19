@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import ArticleList from "./components/Articles/ArticleList";
-import ArticlePage from "./components/Articles/ArticlePage";
-import Navbar from "./components/Common/Navbar";
-import NotFound from "./components/Common/NotFound";
+import ArticleList from "./components/Articles/ArticleList.tsx";
+import ArticlePage from "./components/Articles/ArticlePage.tsx";
+import Navbar from "./components/Common/Navbar.tsx";
+import NotFound from "./components/Common/NotFound.tsx";
 
 export default function App() {
   return (

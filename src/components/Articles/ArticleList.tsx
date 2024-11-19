@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ArticleCard from "./ArticleCard";
-import Article from "../../types/Article";
-import { fetchArticles } from "../api/index";
+import { fetchArticles } from "../../api/index.ts";
+import Article from "../../types/Article.ts";
+import ArticleCard from "./ArticleCard.tsx";
 import "./Styles/ArticleList.css";
 
 interface ArticleListParams {
