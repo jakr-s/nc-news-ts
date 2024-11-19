@@ -1,9 +1,20 @@
-import VoteButton from "../Common/VoteButton";
-import { deleteComment, updateCommentVotes } from "../api";
 import { useState } from "react";
+import { deleteComment, updateCommentVotes } from "../../api/index.ts";
+import Comment from "../../types/Comment.ts";
+import VoteButton from "../Common/VoteButton";
 import "./Styles/CommentCard.css";
 
-export default function CommentCard({ comment, currentUser, onDelete }) {
+interface CommentCardProps {
+  comment: Comment;
+  currentUser: string;
+  onDelete: (commentId: number) => void;
+}
+
+export default function CommentCard({
+  comment,
+  currentUser,
+  onDelete,
+}: CommentCardProps) {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDelete = () => {

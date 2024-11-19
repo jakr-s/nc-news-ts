@@ -1,33 +1,28 @@
-import { useEffect, useState } from "react";
-import { fetchCommentsByArticle } from "../api";
-import CommentList from "../Comments/CommentList";
-import CommentForm from "../Comments/CommentForm";
+import useFetchCommentsByArticle from "../../hooks/useFetchCommentsByArticle.ts";
+import Comment from "../../types/Comment.ts";
+import CommentForm from "../Comments/CommentForm.tsx";
+import CommentList from "../Comments/CommentList.tsx";
 // import "./CommentSection.css";
 
-export default function CommentSection({ article_id, currentUser }) {
-  const [comments, setComments] = useState([]);
-  const [loadingComments, setLoadingComments] = useState(true);
-  const [errorComments, setErrorComments] = useState(null);
+interface CommentSectionProps {
+  article_id: number;
+  currentUser: string;
+}
 
-  useEffect(() => {
-    fetchCommentsByArticle(article_id)
-      .then((fetchedComments) => {
-        setComments(fetchedComments);
-        setLoadingComments(false);
-      })
-      .catch((error) => {
-        setErrorComments(error);
-        setLoadingComments(false);
-      });
-  }, [article_id]);
+export default function CommentSection(
+  { article_id, currentUser }: CommentSectionProps,
+) {
+  const { comments, setComments, loading, error } = useFetchCommentsByArticle(
+    article_id,
+  );
 
-  const addComment = (newComment) => {
+  const addComment = (newComment: Comment) => {
     setComments((prevComments) => [newComment, ...prevComments]);
   };
 
-  if (loadingComments) return <p>Loading comments...</p>;
-  if (errorComments) {
-    return <p>Error loading comments: {errorComments.message}</p>;
+  if (loading) return <p>Loading comments...</p>;
+  if (error) {
+    return <p>Error loading comments: {error.message}</p>;
   }
 
   return (

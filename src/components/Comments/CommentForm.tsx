@@ -1,49 +1,37 @@
 import { useState } from "react";
-import { postComment } from "../api";
+import { postComment } from "../../api/index.ts";
+import Comment from "../../types/Comment.ts";
 import "./Styles/CommentForm.css";
 
-export default function CommentForm({ article_id, addComment, currentUser }) {
-  const [commentBody, setCommentBody] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
+interface CommentFormProps {
+  article_id: number;
+  addComment: (comment: Comment) => void;
+  currentUser: string;
+}
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (commentBody.trim() === "") {
-      setError("Comment cannot be empty.");
-      return;
-    }
-    setIsSubmitting(true);
-    setError(null);
+export default function CommentForm({
+  article_id,
+  addComment,
+  currentUser,
+}: CommentFormProps) {
+  const [commentBody, setCommentBody] = useState<string>("");
 
-    postComment(article_id, currentUser, commentBody)
-      .then((newComment) => {
-        addComment(newComment);
-        setCommentBody("");
-        setSuccessMessage("Comment posted successfully!");
-        setIsSubmitting(false);
-        setTimeout(() => setSuccessMessage(""), 3000);
-      })
-      .catch((error) => {
-        setError(error);
-        setIsSubmitting(false);
-      });
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    postComment(article_id, currentUser, commentBody).then((newComment) => {
+      addComment(newComment);
+      setCommentBody("");
+    });
   };
 
   return (
-    <form className="comment-form" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="comment-form">
       <textarea
         value={commentBody}
         onChange={(e) => setCommentBody(e.target.value)}
-        placeholder="Write your comment here..."
-        disabled={isSubmitting}
+        required
       />
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Posting..." : "Post Comment"}
-      </button>
-      {error && <p className="error-message">{error}</p>}
-      {successMessage && <p className="success-message">{successMessage}</p>}
+      <button type="submit">Add Comment</button>
     </form>
   );
 }

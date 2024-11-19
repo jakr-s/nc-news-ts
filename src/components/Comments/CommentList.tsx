@@ -1,8 +1,19 @@
-import CommentCard from "./CommentCard";
+import Comment from "../../types/Comment.ts";
+import CommentCard from "./CommentCard.tsx";
 import "./Styles/CommentList.css";
 
-export default function CommentList({ comments, currentUser, setComments }) {
-  const handleDelete = (comment_id) => {
+interface CommentListProps {
+  comments: Comment[];
+  currentUser: string;
+  setComments: React.Dispatch<React.SetStateAction<Comment[]>>;
+}
+
+export default function CommentList({
+  comments,
+  currentUser,
+  setComments,
+}: CommentListProps) {
+  const handleDelete = (comment_id: number) => {
     setComments((prevComments) =>
       prevComments.filter((comment) => comment.comment_id !== comment_id)
     );
