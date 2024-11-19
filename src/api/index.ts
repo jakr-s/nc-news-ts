@@ -1,7 +1,7 @@
 import axios from "axios";
-import Article from "../../types/Article.ts";
-import Comment from "../../types/Comment.ts";
-import Topic from "../../types/Topic.ts";
+import Article from "../types/Article.ts";
+import Comment from "../types/Comment.ts";
+import Topic from "../types/Topic.ts";
 
 const api = axios.create({
   baseURL: "https://be-nc-news-z0a0.onrender.com/api",
