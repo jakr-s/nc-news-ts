@@ -1,0 +1,14 @@
+.article-list {
+  margin: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.sorting-controls {
+  margin-bottom: 1rem;
+}
+
+.sorting-controls label {
+  margin-right: 1rem;
+}

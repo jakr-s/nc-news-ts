@@ -1,0 +1,25 @@
+.comment:not(:last-child) {
+  border-bottom: 1px black solid;
+}
+
+.comment--info {
+  display: inline-flex;
+  gap: 1rem;
+}
+
+.comment--body {
+  display: flex;
+  align-items: center;
+  margin: 0.7rem 0;
+}
+
+.comment--body > p {
+  margin-right: auto;
+  max-width: 90%;
+}
+
+.comment--actions {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+}

@@ -1,0 +1,8 @@
+.article--container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.article--body {
+  margin-top: 1rem;
+}

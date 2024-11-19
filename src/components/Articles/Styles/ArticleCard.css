@@ -1,0 +1,25 @@
+.article {
+  border: 0.0625rem solid black;
+  border-radius: 0.6rem;
+  padding: 1%;
+}
+
+.article > img {
+  width: 100%;
+  border-radius: 0.6rem;
+}
+
+.article--info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.125rem;
+}
+
+.article--title {
+  margin-top: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
