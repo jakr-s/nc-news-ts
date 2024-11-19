@@ -1,35 +1,25 @@
-import { useEffect, useState } from "react";
-import { fetchArticleById } from "../api";
-import VoteButton from "../Common/VoteButton";
-import { updateArticleVotes } from "../api";
-// import "./ArticleContent.css";
+import VoteButton from "../Common/VoteButton.tsx";
+import { updateArticleVotes } from "../api/index.ts";
+import useFetchArticleById from "../../hooks/useFetchArticleById.ts";
 
-export default function ArticleContent({ article_id }) {
-  const [article, setArticle] = useState(null);
-  const [loadingArticle, setLoadingArticle] = useState(true);
-  const [errorArticle, setErrorArticle] = useState(null);
+interface ArticleContentProps {
+  article_id: number;
+}
 
-  useEffect(() => {
-    fetchArticleById(article_id)
-      .then((fetchedArticle) => {
-        setArticle(fetchedArticle);
-        setLoadingArticle(false);
-      })
-      .catch((error) => {
-        setErrorArticle(error);
-        setLoadingArticle(false);
-      });
-  }, [article_id]);
+export default function ArticleContent({ article_id }: ArticleContentProps) {
+  const { article, loading, error } = useFetchArticleById(article_id);
 
-  if (loadingArticle) return <p>Loading article...</p>;
-  if (errorArticle) {
+  if (loading) return <p>Loading article...</p>;
+  if (error) {
     return (
       <div>
         <h2>Error</h2>
-        <p>{errorArticle}</p>
+        <p>{error}</p>
       </div>
     );
   }
+
+  if (!article) return null;
 
   return (
     <div className="article-content">

@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
+import Article from "../../types/Article";
 import { fetchArticles } from "../api/index";
 import "./Styles/ArticleList.css";
 
+interface ArticleListParams {
+  topic?: string;
+  [key: string]: string | undefined;
+}
+
 export default function ArticleList() {
-  const { topic } = useParams();
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { topic } = useParams<ArticleListParams>();
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchArticles()
@@ -17,7 +23,7 @@ export default function ArticleList() {
         setLoading(false);
       })
       .catch((error) => {
-        setError(error);
+        setError(error.message);
         setLoading(false);
       });
   }, [topic]);

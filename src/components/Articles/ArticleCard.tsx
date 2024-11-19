@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import "./Styles/ArticleCard.css";
+import Article from "../../types/Article";
 
-export default function ArticleCard({ article }) {
+interface ArticleCardProps {
+  article: Article;
+}
+
+export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <Link to={`/articles/${article.article_id}`}>
       <div className="article">
