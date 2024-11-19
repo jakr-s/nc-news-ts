@@ -1,11 +1,23 @@
 import { useState } from "react";
 
-export default function VoteButton({ id, votes, updateVotes }) {
-  const [voteChange, setVoteChange] = useState(0);
-  const [hasVoted, setHasVoted] = useState(false);
-  const [error, setError] = useState(null);
+interface VoteButtonProps {
+  id: number;
 
-  const handleVote = (inc) => {
+  votes: number;
+
+  updateVotes: (comment_id: number, inc_votes: number) => Promise<number>;
+}
+
+export default function VoteButton({
+  id,
+  votes,
+  updateVotes,
+}: VoteButtonProps) {
+  const [voteChange, setVoteChange] = useState<number>(0);
+  const [hasVoted, setHasVoted] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleVote = (inc: number) => {
     setVoteChange(inc);
     setHasVoted(true);
     updateVotes(id, inc)
