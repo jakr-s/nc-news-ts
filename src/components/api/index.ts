@@ -7,9 +7,10 @@ const api = axios.create({
   baseURL: "https://be-nc-news-z0a0.onrender.com/api",
 });
 
-export function fetchArticles(): Promise<Article[]> {
+export function fetchArticles(topic?: string): Promise<Article[]> {
+  const params = topic ? { topic } : {};
   return api
-    .get("/articles")
+    .get("/articles", { params })
     .then(({ data }) => {
       if (!data.articles) {
         throw new Error("Articles not found");
