@@ -17,7 +17,7 @@ export default function ArticleList() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchArticles()
+    fetchArticles(topic)
       .then((fetchedArticles) => {
         setArticles(fetchedArticles);
         setLoading(false);
