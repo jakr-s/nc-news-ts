@@ -1,7 +1,7 @@
 import axios from "axios";
-import Article from "../../types/Article";
-import Comment from "../../types/Comment";
-import Topic from "../../types/Topic";
+import Article from "../../types/Article.ts";
+import Comment from "../../types/Comment.ts";
+import Topic from "../../types/Topic.ts";
 
 const api = axios.create({
   baseURL: "https://be-nc-news-z0a0.onrender.com/api",
@@ -47,10 +47,10 @@ export function fetchCommentsByArticle(article_id: number): Promise<Comment[]> {
 export function updateArticleVotes(
   article_id: number,
   inc_votes: number,
-): Promise<Article> {
+): Promise<number> {
   return api
     .patch(`/articles/${article_id}`, { inc_votes })
-    .then(({ data }) => data.article as Article)
+    .then(({ data }) => data.article.votes as number)
     .catch((error) => {
       throw error.response?.data?.msg || "Failed to update article votes";
     });
@@ -59,10 +59,10 @@ export function updateArticleVotes(
 export function updateCommentVotes(
   comment_id: number,
   inc_votes: number,
-): Promise<Comment> {
+): Promise<number> {
   return api
     .patch(`/comments/${comment_id}`, { inc_votes })
-    .then(({ data }) => data.comment as Comment)
+    .then(({ data }) => data.comment.votes as number)
     .catch((error) => {
       throw error.response?.data?.msg || "Failed to update comment votes";
     });
