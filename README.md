@@ -9,5 +9,3 @@
 - The styling is _very_ unfinished!
 
 <br/>
-
----- _Nov 19th '24_
